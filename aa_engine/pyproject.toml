@@ -1,0 +1,31 @@
+[project]
+name = "aa-engine"
+version = "0.1.0"
+description = "ETF forecasting → Black–Litterman → backtesting engine (skeleton)"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{name="Your Name", email="you@example.com"}]
+dependencies = [
+  "numpy",
+  "pandas",
+  "pyarrow",
+  "scikit-learn",
+  "xgboost",
+  "pydantic>=2",
+  "pyyaml",
+  "matplotlib",
+  "mlflow"
+]
+
+[project.scripts]
+aa-cli = "aa_engine.cli:main"
+
+[tool.black]
+line-length = 100
+
+[tool.ruff]
+line-length = 100
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"

@@ -1,0 +1,7 @@
+# Backtest configuration (skeleton)
+rebalance: "monthly"
+exec_timing: "t+1_close"
+transaction_cost_bps: 2.0
+slippage_bps: 1.0
+cash_symbol: "BIL"
+report_dir: "reports/backtests"

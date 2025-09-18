@@ -1,0 +1,28 @@
+# Forecasting configuration (skeleton)
+seed: 42
+base_currency: "USD"
+universe:
+  - SPY
+  - QQQ
+  - AGG
+horizon_days: 20
+features:
+  price:
+    returns_windows: [5, 20, 60]
+    vol_windows: [20, 60]
+    momentum_windows: [20, 60, 120]
+  regimes:
+    use_vix: true
+cv:
+  scheme: "expanding"
+  n_folds: 5
+  embargo_days: 5
+model:
+  type: "xgboost"
+  params:
+    n_estimators: 500
+    learning_rate: 0.05
+    max_depth: 4
+    subsample: 0.8
+    colsample_bytree: 0.8
+artifacts_dir: "artifacts/forecaster"

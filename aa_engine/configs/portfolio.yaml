@@ -1,0 +1,8 @@
+# Black–Litterman configuration (skeleton)
+benchmark: "MKT_CAP"
+tau: 0.025
+view_uncertainty: "from_forecast_error"
+constraints:
+  long_only: true
+  weight_cap: 0.25
+turnover_target: 0.25
