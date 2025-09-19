@@ -1,10 +1,10 @@
 [project]
 name = "aa-engine"
 version = "0.1.0"
-description = "ETF forecasting → Black–Litterman → backtesting engine (skeleton)"
+description = "ETF forecasting → Black–Litterman → backtesting engine"
 readme = "README.md"
 requires-python = ">=3.10"
-authors = [{name="Your Name", email="you@example.com"}]
+authors = [{ name = "Your Name", email = "you@example.com" }]
 dependencies = [
   "numpy",
   "pandas",
@@ -14,11 +14,22 @@ dependencies = [
   "pydantic>=2",
   "pyyaml",
   "matplotlib",
-  "mlflow"
+  "mlflow",
+  "yfinance",
 ]
 
 [project.scripts]
 aa-cli = "aa_engine.cli:main"
+
+[tool.setuptools]
+packages = ["aa_engine"]
+include-package-data = true
+
+# (Alternatively, use dynamic discovery—pick ONE approach only)
+# [tool.setuptools.packages.find]
+# where = ["."]
+# include = ["aa_engine*"]
+# exclude = ["tests*", "experiments*", "configs*"]
 
 [tool.black]
 line-length = 100

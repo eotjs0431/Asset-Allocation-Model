@@ -1,6 +1,9 @@
 """I/O helpers — stub."""
+
 from __future__ import annotations
-import pathlib, json
+import pathlib
+import json
+
 
 def write_manifest(path: str | pathlib.Path, manifest: dict) -> None:
     p = pathlib.Path(path)

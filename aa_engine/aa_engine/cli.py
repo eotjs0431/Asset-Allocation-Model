@@ -1,6 +1,10 @@
 from __future__ import annotations
-import argparse, json, sys, pathlib
+import argparse
+import json
+import sys
+import pathlib
 from .utils.logging import get_logger
+
 
 def main():
     parser = argparse.ArgumentParser(prog="aa-cli", description="AA Engine CLI (skeleton)")

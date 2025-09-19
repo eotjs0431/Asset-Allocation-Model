@@ -1,6 +1,9 @@
 """Structured logging — minimal."""
+
 from __future__ import annotations
-import logging, sys
+import logging
+import sys
+
 
 def get_logger(name: str | None = None) -> logging.Logger:
     logging.basicConfig(

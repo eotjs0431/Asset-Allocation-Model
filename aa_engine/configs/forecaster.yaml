@@ -26,3 +26,20 @@ model:
     subsample: 0.8
     colsample_bytree: 0.8
 artifacts_dir: "artifacts/forecaster"
+tuning:
+  enabled: true
+  method: random
+  n_trials: 30
+  tickers: ["SPY","QQQ","AGG"]
+  metric: rmse
+  search_space:
+    n_estimators: [300, 900]
+    learning_rate: [0.03, 0.15]
+    max_depth: [3, 7]
+    subsample: [0.6, 0.95]
+    colsample_bytree: [0.6, 0.95]
+    min_child_weight: [1, 10]
+    reg_lambda: [0.8, 1.8]
+    reg_alpha: [0.0, 0.3]
+  early_stopping_rounds: 50
+  seed: 42
