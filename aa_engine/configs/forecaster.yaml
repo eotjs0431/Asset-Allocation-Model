@@ -18,28 +18,38 @@ cv:
   n_folds: 5
   embargo_days: 5
 model:
-  type: "xgboost"
+  early_stopping_rounds: 50
   params:
-    n_estimators: 500
-    learning_rate: 0.05
-    max_depth: 4
-    subsample: 0.8
-    colsample_bytree: 0.8
+    n_estimators: 835
+    learning_rate: 0.043155591977342846
+    max_depth: 3
+    subsample: 0.708617135873426
+    colsample_bytree: 0.6503551765398999
+    min_child_weight: 9
+    reg_alpha: 0.04965951682058345
+    reg_lambda: 1.7209704724874504
+seed: 42
 artifacts_dir: "artifacts/forecaster"
 tuning:
-  enabled: true
+  enabled: false
   method: random
-  n_trials: 30
-  tickers: ["SPY","QQQ","AGG"]
-  metric: rmse
+  n_trials: 120                 # try 120 to 200 initially
+  tickers:                      # calibrate across the whole domain
+    [SPY, QQQ, AGG, BND, HYG, EMB, VWOB, EWY, IWM, VWO, IEMG, CMOD.L, GSG, GLD, RWO, IFGL, 148070.KS, 385560.KS, 278530.KS]
+  early_stopping_rounds: 50
+  min_history_days: 120
+  seed: 42
+  aggregation:
+      unit: nrmse                 # scales error by each ticker’s target std
+      weight: equal               # equal weight per ticker (or 'n_obs' if you prefer)
+      reducer: mean               # mean (keep it simple and robust)
+
   search_space:
-    n_estimators: [300, 900]
-    learning_rate: [0.03, 0.15]
-    max_depth: [3, 7]
+    n_estimators: [300, 1200]
+    learning_rate: [0.03, 0.12]
+    max_depth: {"low": 3, "high": 7, "type": "int"}
     subsample: [0.6, 0.95]
     colsample_bytree: [0.6, 0.95]
-    min_child_weight: [1, 10]
+    min_child_weight: {"low": 1, "high": 10, "type": "int"}
     reg_lambda: [0.8, 1.8]
     reg_alpha: [0.0, 0.3]
-  early_stopping_rounds: 50
-  seed: 42
